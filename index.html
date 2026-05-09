@@ -6,11 +6,92 @@
   <title>Coming Soon – Kabinet Selaras</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Spectral:wght@300;400&display=swap" rel="stylesheet" />
   
+  <!-- SVG Gradient Definition -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <linearGradient id="socialGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#e8a020;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 5px rgba(232, 160, 32, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(232, 160, 32, 0.6), 0 0 30px rgba(232, 160, 32, 0.4);
+      }
+    }
+
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     body {
@@ -19,8 +100,8 @@
       height: 100vh;
       width: 100vw;
       overflow: hidden;
-      background-image: url('assets/images/Image(1).png');
-      background-size: 100% 100%;
+      background-image: url('assets/images/bg.svg');
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
@@ -35,11 +116,43 @@
       overflow: hidden;
     }
 
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 0%;
+      transform: translateY(-50%);
+      width: 550px;
+      height: 550px;
+      background-image: url('assets/images/pesawat.svg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .page::after {
+      content: '';
+      position: absolute;
+      top: 40%;
+      right: 0%;
+      transform: translateY(-50%);
+      width: 550px;
+      height: 550px;
+      background-image: url('assets/images/jam.svg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      animation: float 4s ease-in-out infinite reverse;
+    }
+
 
 
     .content {
       position: relative;
-      z-index: 4;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -47,6 +160,7 @@
       max-width: 680px;
       width: 100%;
       padding: 0 24px;
+      animation: fadeInUp 1s ease-out;
     }
 
     .brand {
@@ -54,6 +168,7 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 36px;
+      animation: fadeInUp 1s ease-out 0.2s both;
     }
 
     .brand img {
@@ -86,6 +201,7 @@
       line-height: 1;
       color: #e8e2d8;
       letter-spacing: -0.01em;
+      animation: fadeInUp 1s ease-out 0.4s both;
     }
 
     .heading-soon {
@@ -95,6 +211,7 @@
       color: #e8a020;
       letter-spacing: -0.01em;
       margin-bottom: 18px;
+      animation: fadeInUp 1s ease-out 0.6s both;
     }
 
     .ornament-row {
@@ -102,6 +219,11 @@
       align-items: center;
       gap: 14px;
       margin: 10px 0 16px;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .ornament-row svg {
+      animation: pulse 2s ease-in-out infinite;
     }
 
     .orn-line {
@@ -120,6 +242,7 @@
       color: #9e9890;
       line-height: 1.6;
       margin-bottom: 32px;
+      animation: fadeInUp 1s ease-out 1s both;
     }
 
     .countdown {
@@ -131,6 +254,21 @@
       backdrop-filter: blur(10px);
       padding: 20px 0;
       margin-bottom: 36px;
+      animation: fadeInUp 1s ease-out 1.2s both;
+    }
+
+    .cd-number {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #ddd8ce;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      transition: all 0.3s ease;
+    }
+
+    .cd-number:hover {
+      color: #e8a020;
+      transform: scale(1.1);
     }
 
     .cd-block {
@@ -166,18 +304,208 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #0a1929;
-      border: 1.5px solid rgba(255,255,255,0.13);
+      background: linear-gradient(135deg, #e8a020, #d4941a);
+      border: none;
       border-radius: 9999px;
-      padding: 11px 28px;
+      padding: 12px 32px;
       text-decoration: none;
-      transition: all 0.2s ease;
-      color: #ffffff;
+      transition: all 0.3s ease;
+      color: #1a1a1a;
+      box-shadow: 0 4px 15px rgba(232, 160, 32, 0.3);
+      animation: fadeInUp 1s ease-out 1.4s both;
     }
 
     .btn-back:hover {
-      background: #001f3f;
-      border-color: rgba(255,255,255,0.22);
+      background: linear-gradient(135deg, #f0a830, #e8a020);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(232, 160, 32, 0.5);
+      animation: glow 1.5s ease-in-out infinite;
+    }
+
+    .social-media {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      display: flex;
+      gap: 15px;
+      z-index: 20;
+      animation: slideInFromBottom 1s ease-out 1.6s both;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: #ffffff;
+      animation: fadeInLeft 0.6s ease-out calc(1.8s + var(--delay, 0s)) both;
+    }
+
+    .social-icon:nth-child(1) { --delay: 0s; }
+    .social-icon:nth-child(2) { --delay: 0.1s; }
+    .social-icon:nth-child(3) { --delay: 0.2s; }
+    .social-icon:nth-child(4) { --delay: 0.3s; }
+
+    .social-icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .social-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: url(#socialGradient);
+    }
+
+    @media (max-width: 1200px) {
+      .page::before {
+        left: 8%;
+        width: 150px;
+        height: 150px;
+      }
+      
+      .page::after {
+        right: 8%;
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page::before {
+        left: -40%;
+        width: 350px;
+        height: 350px;
+        top: 17%;
+      }
+      
+      .page::after {
+        right: -30%;
+        width: 350px;
+        height: 350px;
+        top: 60%;
+      }
+
+      .social-media {
+        bottom: 25px;
+        left: 23%;
+        transform: translateX(-50%);
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .social-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .social-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .countdown {
+        max-width: 100%;
+      }
+
+      .cd-block {
+        padding: 0 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page::before {
+        left: 3%;
+        width: 140px;
+        height: 140px;
+        top: 20%;
+      }
+      
+      .page::after {
+        right: 3%;
+        width: 100px;
+        height: 100px;
+        top: 80%;
+      }
+
+      .social-media {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        gap: 18px;
+        justify-content: center;
+      }
+
+      .social-icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      .social-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .content {
+        padding: 0 20px;
+      }
+
+      .countdown {
+        margin-bottom: 25px;
+        max-width: 100%;
+      }
+
+      .cd-block {
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .page::before {
+        left: 2%;
+        width: 120px;
+        height: 120px;
+        top: 18%;
+      }
+      
+      .page::after {
+        right: 2%;
+        width: 85px;
+        height: 85px;
+        top: 82%;
+      }
+
+      .social-media {
+        bottom: 15px;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 42px;
+        height: 42px;
+      }
+
+      .social-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .countdown {
+        max-width: 100%;
+      }
+
+      .cd-block {
+        padding: 0 16px;
+      }
     }
 
 
@@ -238,9 +566,35 @@
 
     <a href="/" class="btn-back">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2.5 8.5L10 2.5L17.5 8.5V17.5H13V12.5H7V17.5H2.5V8.5Z" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M2.5 8.5L10 2.5L17.5 8.5V17.5H13V12.5H7V17.5H2.5V8.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
       </svg>
-      <span style="font-size:13px; font-weight:400; letter-spacing:0.16em; color:#ffffff;">KEMBALI KE BERANDA</span>
+      <span style="font-size:13px; font-weight:500; letter-spacing:0.16em;">Kembali</span>
+    </a>
+  </div>
+
+  <div class="social-media">
+    <a href="#" class="social-icon" title="TikTok">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+      </svg>
+    </a>
+    
+    <a href="#" class="social-icon" title="LinkedIn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+    
+    <a href="#" class="social-icon" title="YouTube">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    </a>
+    
+    <a href="#" class="social-icon" title="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
     </a>
   </div>
 </div>
